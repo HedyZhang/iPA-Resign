@@ -91,14 +91,14 @@ static NSString *kKeyBundleVersion                  = @"CFBundleVersion";
 - (IBAction)actionBrowerButton:(NSButton *)button
 {
     NSOpenPanel* openDlg = [NSOpenPanel openPanel];
-    
-    [openDlg setCanChooseFiles:TRUE];
-    [openDlg setCanChooseDirectories:FALSE];
+
     [openDlg setAllowsMultipleSelection:FALSE];
     [openDlg setAllowsOtherFileTypes:FALSE];
     
     if (button == iPAPathBrowerButton)
     {
+        [openDlg setCanChooseDirectories:NO];
+        [openDlg setCanChooseFiles:TRUE];
         [openDlg setAllowedFileTypes:@[@"ipa", @"IPA", @"xcarchive"]];
         if ([openDlg runModal] == NSModalResponseOK)
         {
@@ -109,6 +109,8 @@ static NSString *kKeyBundleVersion                  = @"CFBundleVersion";
     
     if (button == mobileProvisionBrower)
     {
+        [openDlg setCanChooseDirectories:NO];
+        [openDlg setCanChooseFiles:TRUE];
         [openDlg setAllowedFileTypes:@[@"mobileprovision", @"MOBILEPROVISION"]];
         if ([openDlg runModal] == NSModalResponseOK)
         {
@@ -119,6 +121,8 @@ static NSString *kKeyBundleVersion                  = @"CFBundleVersion";
     
     if (button == entitlementBrowerButton)
     {
+        [openDlg setCanChooseDirectories:NO];
+        [openDlg setCanChooseFiles:TRUE];
         [openDlg setAllowedFileTypes:@[@"plist", @"PLIST"]];
         if ([openDlg runModal] == NSModalResponseOK)
         {
@@ -129,6 +133,8 @@ static NSString *kKeyBundleVersion                  = @"CFBundleVersion";
     
     if (button == assertsBrowerButton)
     {
+        [openDlg setCanChooseDirectories:YES];
+        [openDlg setCanChooseFiles:NO];
         if ([openDlg runModal] == NSModalResponseOK)
         {
             NSString* fileNameOpened = [[[openDlg URLs] objectAtIndex:0] path];
@@ -140,6 +146,7 @@ static NSString *kKeyBundleVersion                  = @"CFBundleVersion";
 - (IBAction)actionResign:(id)sender
 {
     [userDefaults setValue:@([certsComboBox indexOfSelectedItem]) forKey:KEY_CERT_SELETED_ITEM];
+    [userDefaults setValue:[iPAPathTextField stringValue] forKey:KEY_IPA_NATIVE_PATH];
     [userDefaults setValue:[mobileProvisionPathTextField stringValue] forKey:KEY_MOBILE_PROVISION_PATH];
     [userDefaults setValue:[entitlementsPathTextField stringValue] forKey:KEY_ENTITLEMENTS_PATH];
     [userDefaults setValue:[assetsPathTextField stringValue] forKey:KEY_IMAGE_ASSETS_PATH];
@@ -322,13 +329,40 @@ static NSString *kKeyBundleVersion                  = @"CFBundleVersion";
 
 - (void)doChangePayloadImageSources
 {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *payload = [workingPath stringByAppendingPathComponent:kPayloadDirName];
     
+    NSArray *dirContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:payload error:nil];
+    NSString *payloadDir;
+    
+    for (NSString *file in dirContents)
+    {
+        if ([[[file pathExtension] lowercaseString] isEqualToString:@"app"])
+        {
+            payloadDir = [payload stringByAppendingPathComponent:file];
+            break;
+        }
+    }
+
+    if ( [fileManager fileExistsAtPath:assetsPathTextField.stringValue] )
+    {
+        NSArray *icons = [fileManager contentsOfDirectoryAtPath:assetsPathTextField.stringValue error:nil];
+        
+       [icons enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+           NSString *iconName = ( NSString * )obj;
+           if ( [[iconName.pathExtension lowercaseString] isEqualToString:@"png"] )
+           {
+               [fileManager removeItemAtPath:[payloadDir stringByAppendingPathComponent:iconName] error:nil];
+               [fileManager copyItemAtPath:[assetsPathTextField.stringValue stringByAppendingPathComponent:iconName] toPath:[payloadDir stringByAppendingPathComponent:iconName] error:nil];
+           }
+       }];
+    }
 }
 
 
 - (BOOL)doChangeBundleShortVersion:(NSString *)newVersion
 {
-     NSString *infoPlistPath = [self payloadInfoPlistPath];
+    NSString *infoPlistPath = [self payloadInfoPlistPath];
     
    return  [self changeBundleIDForFile:infoPlistPath bundleIDKey:kKeyBundleShortVersion newBundleID:newVersion plistOutOptions:NSPropertyListBinaryFormat_v1_0];
 }
@@ -822,7 +856,7 @@ static NSString *kKeyBundleVersion                  = @"CFBundleVersion";
 {
     getCertsResult = nil;
     
-    statusLabel.stringValue = @"获取签名证书";
+    statusLabel.stringValue = @"获取钥匙串中的签名证书";
     
     certTask = [[NSTask alloc] init];
     
@@ -864,8 +898,6 @@ static NSString *kKeyBundleVersion                  = @"CFBundleVersion";
     comboBoxItems = [NSMutableArray arrayWithArray:tempGetCertsResult];
     
     [certsComboBox reloadData];
-    [certsComboBox selectItemAtIndex:0];
-
 }
 
 #pragma mark - ComboBox Delegate Methods
