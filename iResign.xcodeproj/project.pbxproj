@@ -1,0 +1,300 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7D24C9E31C21527000041339 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D24C9E21C21527000041339 /* AppDelegate.m */; };
+		7D24C9E61C21527000041339 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D24C9E51C21527000041339 /* main.m */; };
+		7D24C9E81C21527000041339 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D24C9E71C21527000041339 /* Assets.xcassets */; };
+		7D24C9EB1C21527000041339 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D24C9E91C21527000041339 /* MainMenu.xib */; };
+		7D24C9F41C216AC500041339 /* ResignWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D24C9F31C216AC500041339 /* ResignWindow.m */; };
+		7D24C9F71C2170D300041339 /* TextFieldDrag.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D24C9F61C2170D300041339 /* TextFieldDrag.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7D24C9DE1C21527000041339 /* iResign.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iResign.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D24C9E11C21527000041339 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7D24C9E21C21527000041339 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7D24C9E51C21527000041339 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7D24C9E71C21527000041339 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7D24C9EA1C21527000041339 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		7D24C9EC1C21527000041339 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7D24C9F21C216AC500041339 /* ResignWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResignWindow.h; sourceTree = "<group>"; };
+		7D24C9F31C216AC500041339 /* ResignWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResignWindow.m; sourceTree = "<group>"; };
+		7D24C9F51C2170D200041339 /* TextFieldDrag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldDrag.h; sourceTree = "<group>"; };
+		7D24C9F61C2170D300041339 /* TextFieldDrag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldDrag.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7D24C9DB1C21527000041339 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7D24C9D51C21527000041339 = {
+			isa = PBXGroup;
+			children = (
+				7D24C9E01C21527000041339 /* iResign */,
+				7D24C9DF1C21527000041339 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7D24C9DF1C21527000041339 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7D24C9DE1C21527000041339 /* iResign.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7D24C9E01C21527000041339 /* iResign */ = {
+			isa = PBXGroup;
+			children = (
+				7D24C9E11C21527000041339 /* AppDelegate.h */,
+				7D24C9E21C21527000041339 /* AppDelegate.m */,
+				7D24C9F21C216AC500041339 /* ResignWindow.h */,
+				7D24C9F31C216AC500041339 /* ResignWindow.m */,
+				7D24C9F51C2170D200041339 /* TextFieldDrag.h */,
+				7D24C9F61C2170D300041339 /* TextFieldDrag.m */,
+				7D24C9E71C21527000041339 /* Assets.xcassets */,
+				7D24C9E91C21527000041339 /* MainMenu.xib */,
+				7D24C9EC1C21527000041339 /* Info.plist */,
+				7D24C9E41C21527000041339 /* Supporting Files */,
+			);
+			path = iResign;
+			sourceTree = "<group>";
+		};
+		7D24C9E41C21527000041339 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7D24C9E51C21527000041339 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7D24C9DD1C21527000041339 /* iResign */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7D24C9EF1C21527000041339 /* Build configuration list for PBXNativeTarget "iResign" */;
+			buildPhases = (
+				7D24C9DA1C21527000041339 /* Sources */,
+				7D24C9DB1C21527000041339 /* Frameworks */,
+				7D24C9DC1C21527000041339 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iResign;
+			productName = iResign;
+			productReference = 7D24C9DE1C21527000041339 /* iResign.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7D24C9D61C21527000041339 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "焱厽";
+				TargetAttributes = {
+					7D24C9DD1C21527000041339 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = 7D24C9D91C21527000041339 /* Build configuration list for PBXProject "iResign" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7D24C9D51C21527000041339;
+			productRefGroup = 7D24C9DF1C21527000041339 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7D24C9DD1C21527000041339 /* iResign */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7D24C9DC1C21527000041339 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D24C9E81C21527000041339 /* Assets.xcassets in Resources */,
+				7D24C9EB1C21527000041339 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7D24C9DA1C21527000041339 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D24C9E61C21527000041339 /* main.m in Sources */,
+				7D24C9F71C2170D300041339 /* TextFieldDrag.m in Sources */,
+				7D24C9E31C21527000041339 /* AppDelegate.m in Sources */,
+				7D24C9F41C216AC500041339 /* ResignWindow.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7D24C9E91C21527000041339 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7D24C9EA1C21527000041339 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7D24C9ED1C21527000041339 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		7D24C9EE1C21527000041339 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		7D24C9F01C21527000041339 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = iResign/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yanshu.iResign;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7D24C9F11C21527000041339 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = iResign/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yanshu.iResign;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7D24C9D91C21527000041339 /* Build configuration list for PBXProject "iResign" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D24C9ED1C21527000041339 /* Debug */,
+				7D24C9EE1C21527000041339 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7D24C9EF1C21527000041339 /* Build configuration list for PBXNativeTarget "iResign" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D24C9F01C21527000041339 /* Debug */,
+				7D24C9F11C21527000041339 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7D24C9D61C21527000041339 /* Project object */;
+}
