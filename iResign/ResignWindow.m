@@ -173,7 +173,7 @@ static NSString *kKeyBundleVersion                  = @"CFBundleVersion";
         if ([[[sourcePath pathExtension] lowercaseString] isEqualToString:@"ipa"]) {
             if (sourcePath && [sourcePath length] > 0) {
                 NSLog(@"Unzipping %@",sourcePath);
-                [statusLabel setStringValue:@"提取原始App"];
+                [statusLabel setStringValue:@"提取.app包"];
             }
             
             unzipTask = [[NSTask alloc] init];
@@ -213,7 +213,7 @@ static NSString *kKeyBundleVersion                  = @"CFBundleVersion";
                     applicationPath = [[sourcePath stringByAppendingPathComponent:kProductsDirName] stringByAppendingPathComponent:applicationPath];
                     
                     NSLog(@"Copying %@ to %@ path in %@", applicationPath, kPayloadDirName, payloadPath);
-                    [statusLabel setStringValue:[NSString stringWithFormat:@"Copying .xcarchive app to %@ path", kPayloadDirName]];
+                    [statusLabel setStringValue:[NSString stringWithFormat:@"正在复制 .xcarchive 归档文件到 %@ 路径下", kPayloadDirName]];
                     
                     copyTask = [[NSTask alloc] init];
                     [copyTask setLaunchPath:@"/bin/cp"];
@@ -224,15 +224,15 @@ static NSString *kKeyBundleVersion                  = @"CFBundleVersion";
                     [copyTask launch];
                 }
                 else {
-                    [self showAlertOfKind:NSCriticalAlertStyle title:@"Error" message:[NSString stringWithFormat:@"Unable to parse %@", kInfoPlistFilename]];
+                    [self showAlertOfKind:NSCriticalAlertStyle title:@"Error" message:[NSString stringWithFormat:@"不能解析 %@", kInfoPlistFilename]];
                     [self enableControls];
-                    [statusLabel setStringValue:@"Ready"];
+                    [statusLabel setStringValue:@"正在准备..."];
                 }
             }
             else {
                 [self showAlertOfKind:NSCriticalAlertStyle title:@"Error" message:[NSString stringWithFormat:@"Retrieve %@ failed", kInfoPlistFilename]];
                 [self enableControls];
-                [statusLabel setStringValue:@"Ready"];
+                [statusLabel setStringValue:@"正在准备..."];
             }
         }
         
@@ -241,7 +241,7 @@ static NSString *kKeyBundleVersion                  = @"CFBundleVersion";
     {
         [self showAlertOfKind:NSCriticalAlertStyle title:@"Error" message:@"You must choose an signing certificate from dropdown."];
         [self enableControls];
-        [statusLabel setStringValue:@"Please try again"];
+        [statusLabel setStringValue:@"请重试"];
     }
     
 }
@@ -257,7 +257,7 @@ static NSString *kKeyBundleVersion                  = @"CFBundleVersion";
         
         if ([[NSFileManager defaultManager] fileExistsAtPath:[workingPath stringByAppendingPathComponent:kPayloadDirName]]) {
             NSLog(@"Unzipping done");
-            [statusLabel setStringValue:@"提取原始App"];
+            [statusLabel setStringValue:@"提取.app包"];
             
             [self doChangePayloadSource];
         }
@@ -320,7 +320,7 @@ static NSString *kKeyBundleVersion                  = @"CFBundleVersion";
         copyTask = nil;
         
         NSLog(@"Copy done");
-        [statusLabel setStringValue:@".xcarchive app copied"];
+        [statusLabel setStringValue:@".xcarchive归档文件已经复制完成"];
         [self doChangePayloadSource];
     }
 }
@@ -483,7 +483,7 @@ static NSString *kKeyBundleVersion                  = @"CFBundleVersion";
                     }
                 }
             }
-            [statusLabel setStringValue:[NSString stringWithFormat:@"Codesigning %@",file]];
+            [statusLabel setStringValue:[NSString stringWithFormat:@"正在签名 %@",file]];
             break;
         }
     }
@@ -501,7 +501,7 @@ static NSString *kKeyBundleVersion                  = @"CFBundleVersion";
 
 - (void)signFile:(NSString*)filePath {
     NSLog(@"Codesigning %@", filePath);
-    [statusLabel setStringValue:[NSString stringWithFormat:@"Codesigning %@",filePath]];
+    [statusLabel setStringValue:[NSString stringWithFormat:@"正在签名 %@",filePath]];
     
     NSMutableArray *arguments = [NSMutableArray arrayWithObjects:@"-fs", [certsComboBox objectValue], nil];
     NSDictionary *systemVersionDictionary = [NSDictionary dictionaryWithContentsOfFile:@"/System/Library/CoreServices/SystemVersion.plist"];
@@ -577,7 +577,7 @@ static NSString *kKeyBundleVersion                  = @"CFBundleVersion";
             [self signFile:appPath];
         } else {
             NSLog(@"Codesigning done");
-            [statusLabel setStringValue:@"Codesigning completed"];
+            [statusLabel setStringValue:@"签名完成"];
             [self doVerifySignature];
         }
     }
@@ -592,7 +592,7 @@ static NSString *kKeyBundleVersion                  = @"CFBundleVersion";
         [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(checkVerificationProcess:) userInfo:nil repeats:TRUE];
         
         NSLog(@"Verifying %@",appPath);
-        [statusLabel setStringValue:[NSString stringWithFormat:@"Verifying %@",appName]];
+        [statusLabel setStringValue:[NSString stringWithFormat:@"验签 %@",appName]];
         
         NSPipe *pipe=[NSPipe pipe];
         [verifyTask setStandardOutput:pipe];
@@ -620,13 +620,13 @@ static NSString *kKeyBundleVersion                  = @"CFBundleVersion";
         verifyTask = nil;
         if ([verificationResult length] == 0) {
             NSLog(@"Verification done");
-            [statusLabel setStringValue:@"Verification completed"];
+            [statusLabel setStringValue:@"验签成功"];
             [self doZip];
         } else {
             NSString *error = [[codesigningResult stringByAppendingString:@"\n\n"] stringByAppendingString:verificationResult];
-            [self showAlertOfKind:NSCriticalAlertStyle title:@"Signing failed" message:error];
+            [self showAlertOfKind:NSCriticalAlertStyle title:@"签名失败" message:error];
             [self enableControls];
-            [statusLabel setStringValue:@"Please try again"];
+            [statusLabel setStringValue:@"请重试"];
         }
     }
 }
@@ -660,7 +660,7 @@ static NSString *kKeyBundleVersion                  = @"CFBundleVersion";
         
         
         NSLog(@"Zipping %@", destinationPath);
-        [statusLabel setStringValue:[NSString stringWithFormat:@"Saving %@",fileName]];
+        [statusLabel setStringValue:[NSString stringWithFormat:@"正在保存 %@",fileName]];
         
         [zipTask launch];
     }
@@ -774,12 +774,12 @@ static NSString *kKeyBundleVersion                  = @"CFBundleVersion";
                     } else {
                         [self showAlertOfKind:NSCriticalAlertStyle title:@"Error" message:@"Product identifiers don't match"];
                         [self enableControls];
-                        [statusLabel setStringValue:@"Ready"];
+                        [statusLabel setStringValue:@"准备"];
                     }
                 } else {
                     [self showAlertOfKind:NSCriticalAlertStyle title:@"Error" message:@"Provisioning failed"];
                     [self enableControls];
-                    [statusLabel setStringValue:@"Ready"];
+                    [statusLabel setStringValue:@"准备"];
                 }
                 break;
             }
@@ -794,7 +794,7 @@ static NSString *kKeyBundleVersion                  = @"CFBundleVersion";
         return; // Using a pre-made entitlements file or we're not re-provisioning.
     }
     
-    [statusLabel setStringValue:@"Generating entitlements"];
+    [statusLabel setStringValue:@"创建 entitlements.plist文件"];
     
     if (appPath) {
         generateEntitlementsTask = [[NSTask alloc] init];
@@ -826,8 +826,7 @@ static NSString *kKeyBundleVersion                  = @"CFBundleVersion";
     if ([generateEntitlementsTask isRunning] == 0) {
         [timer invalidate];
         generateEntitlementsTask = nil;
-        NSLog(@"Entitlements fixed done");
-        [statusLabel setStringValue:@"Entitlements generated"];
+        [statusLabel setStringValue:@"Entitlements.plist 完成创建"];
         [self doEntitlementsEdit];
     }
 }
@@ -839,10 +838,9 @@ static NSString *kKeyBundleVersion                  = @"CFBundleVersion";
     NSString* filePath = [workingPath stringByAppendingPathComponent:@"entitlements.plist"];
     NSData *xmlData = [NSPropertyListSerialization dataWithPropertyList:entitlements format:NSPropertyListXMLFormat_v1_0 options:kCFPropertyListImmutable error:nil];
     if(![xmlData writeToFile:filePath atomically:YES]) {
-        NSLog(@"Error writing entitlements file.");
         [self showAlertOfKind:NSCriticalAlertStyle title:@"Error" message:@"Failed entitlements generation"];
         [self enableControls];
-        [statusLabel setStringValue:@"Ready"];
+        [statusLabel setStringValue:@"准备"];
     }
     else {
         entitlementsPathTextField.stringValue = filePath;
